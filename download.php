@@ -1,7 +1,7 @@
 <?php
 	//download a file using downloadFile(url of file,output name of file, save path)
 	function downloadFile ($url, $name, $path) {
-		file_put_contents($path.$name.".jpg", fopen($url, 'r'));
+		file_put_contents($path.$name.".".pathinfo(parse_url($url,PHP_URL_PATH), PATHINFO_EXTENSION), fopen($url, 'r'));
 	}
 	
 	
@@ -22,12 +22,10 @@
 			while (false !== ($array[] = readdir($handle))){}
 			closedir($handle);
 		}
-		$i = 0;
 		foreach($array as $file){
-			if ($i > 1 && ($file != '' || $file != NULL)){
+			if ($file != '.' && $file != '..' && ($file != '' || $file != NULL)){
 				$zip->addFile($path.$file,$file);
 			}
-			$i++;
 		}
 		$zip->close();
 	}
