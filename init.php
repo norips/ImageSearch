@@ -1,5 +1,5 @@
 <?php
-	set_include_path("../googleapi/src/");
+	set_include_path("./googleapi/src/");
 	require_once 'Google/Client.php'; 
 	require_once 'Google/Service/Customsearch.php';	
 	
